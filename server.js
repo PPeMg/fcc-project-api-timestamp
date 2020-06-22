@@ -29,12 +29,10 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
   const date_string = ((req.params.date_string !== undefined) ? req.params.date_string : "").trim();
 
   if(date_string !== ""){
-    console.log((isNaN(date_string) ? "NAN: " : "NUMBER: ") + date_string);
-
     if(isNaN(date_string)){
       date = new Date(date_string);
     } else {
-      date = new Date(+(date_string) * 1000);
+      date = new Date(+date_string);
     }
   }
 
@@ -42,29 +40,6 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
     generatedObject = {"unix" : date.getTime(), "utc" : date.toUTCString()};
   }
 
-  
-
-
-
-
-
-  //   if(!isNaN(Date.parse(date_string))){
-  //     date = new Date(date_string);
-  //   } else if(!isNaN(date_string)){
-
-  //   }
-  // }
-
-  // if(!isNaN(parsedDate)){
-  //   if(parsedDate > 0){
-  //   }
-  // } else {
-  //   date = new Date((+(date_string) * 1000).toString());
-  // }
-
-console.log(date);
-
-  //res.send("THE INPUT TIMESTAMP IS \n" + JSON.stringify(generatedObject));
   res.json(generatedObject);
 });
 
